@@ -164,36 +164,11 @@ li:hover {
 	cursor: pointer;
 }
 
-.category:active {
+.category.active {
 
 	background-color: #1D6154;
 	color: white;
 
-}
-
-.container-filtres {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 0.93rem;
-	height: 6.25rem;
-}
-
-.container-filtres button {
-	background-color: #fefef8;
-	padding: 0.56rem 1.25rem;
-	border: 0.06rem solid #1d6154;
-	border-radius: 1.56rem;
-	color: #1d6154;
-	font-weight: 700;
-	font-size: 1.2rem;
-	font-family: Syne;
-	cursor: pointer;
-}
-
-.container-filtres button:focus {
-	background-color: #1d6154;
-	color: white;
 }
 
 #contact {

@@ -1,4 +1,4 @@
-const imagesContainer = document.querySelector(".gallery");
+const workContainer = document.querySelector(".gallery");
 
 // Fonction pour récupérer les travaux depuis l'API
 
@@ -24,7 +24,7 @@ async function createFigure(work) {
 
   figure.appendChild(figureImage);
   figure.appendChild(figureCaption);
-  imagesContainer.appendChild(figure);
+  workContainer.appendChild(figure);
 
   return figure;
 }
@@ -50,17 +50,60 @@ async function getCategories() {
 // Fonction pour créer dynamiquement les boutons de filtre
 
 const filtersContainer = document.querySelector(".filtres");
-
 async function createCategoryButtons() {
-  const categories = await getCategories();
 
+  // Création du bouton "Tous"
+
+  const defaultButton = document.createElement("button");
+  defaultButton.textContent = "Tous";
+  defaultButton.classList.add("category", "active");
+  defaultButton.id = 0;
+  filtersContainer.appendChild(defaultButton)
+
+  // Création des boutons avec les données de l'API
+
+  const categories = await getCategories();
   categories.forEach((category) => {
-    const btn = document.createElement("button");
-    btn.textContent = category.name;
-    btn.classList.add("category");
-    btn.id = category.id; // Peut être utilisé pour filtrer plus tard
-    filtersContainer.appendChild(btn);
+    const filter = document.createElement("button");
+    filter.textContent = category.name;
+    filter.classList.add("category");
+    filter.id = category.id; // Utilisé pour le filtre en dessous
+    filtersContainer.appendChild(filter);
   });
 }
 
-createCategoryButtons(); // Crée les boutons dynamiquement
+function setupFilters() {
+  const buttons = document.querySelectorAll(".category");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const categoryId = parseInt(button.id); // Récupère l'ID du bouton cliqué
+      const works = await getWorks();
+
+      // Met à jour le boutton actif
+
+      buttons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      // Filtrage avec "Tous", on affiche tout
+
+      let filteredWorks = [];
+
+      if (categoryId === 0) {
+        filteredWorks = works; // Afficher tous les travaux
+      } else {
+        filteredWorks = works.filter((work) => work.categoryId === categoryId);
+      }
+
+      // Affichage
+
+      workContainer.innerHTML = ""; // On vide la gallerie
+      filteredWorks.forEach((work) => createFigure(work)); // On remplie la gallerie avec nos éléments filtrés
+    });
+  });
+}
+
+createCategoryButtons().then(() => {
+  setupFilters(); // Active les filtres une fois les boutons prêts
+});
+
