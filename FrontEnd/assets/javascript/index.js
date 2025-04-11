@@ -1,4 +1,3 @@
-const workContainer = document.querySelector(".gallery");
 
 // Fonction pour récupérer les travaux depuis l'API
 
@@ -9,6 +8,7 @@ async function getWorks() {
 
 // Fonction pour créer les figures avec les données récupérées
 
+const workContainer = document.querySelector(".gallery");
 async function createFigure(work) {
   const figure = document.createElement("figure");
   const figureCaption = document.createElement("figurecaption");

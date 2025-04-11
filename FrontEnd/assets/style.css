@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background-color: #FFFEF8;
 }
 ol, ul {
 	list-style: none;
@@ -214,9 +215,61 @@ input[type="submit"]{
 	border-radius: 60px ;
 }
 
+.loginmain {
+	justify-self: center;
+	height: 724px;
+}
+
+.loginmain h2 {
+	justify-self: center;
+	margin-bottom: 20px;
+}
+
+.form-login {
+	display: flex;
+	flex-direction: column;
+	justify-self: center;
+	align-items: center;
+
+	margin-bottom: 25px;
+}
+
+.inputlogin{
+	width: 380px;
+	height: 50px;
+	border-style: none;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.form-login label{
+	align-self: baseline;
+	margin-bottom: 5px;
+}
+
+.form-login input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+
+	color: white;
+	border-color: #1D6154;
+	background-color: #1D6154;
+
+	margin-bottom: 0;
+	width: 180px;
+
+	text-align: center;
+	border-radius: 60px ;
+
+	height: 36px;
+}
+
+.loginmain p {
+	justify-self: center;
+	text-decoration: underline;
+}
+
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
 }
-
