@@ -18,27 +18,40 @@
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
         <ul>
-          <li>projets</li>
+          <li><a href="index.html">projets</a></li>
           <li>contact</li>
-          <li>login</li>
+          <li id="currentPage">login</li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
     </header>
-    <main class="loginmain">
-        <h2>Log in</h2>
-      <form action="" method="get" class="form-container">
+    <main class="loginMain">
+      <h2>Log in</h2>
+      <form id="loginForm" class="formContainer">
         <div class="form-login">
-          <label for="email">E-mail </label>
-          <input class="inputlogin" type="email" name="name" id="name" required />
+          <label for="email">E-mail</label>
+          <input
+            class="inputlogin"
+            type="email"
+            name="email"
+            id="email"
+            required
+          />
         </div>
         <div class="form-login">
-          <label for="text">Mot de passe </label>
-          <input class="inputlogin" type="text" name="email" id="email" required />
+          <label for="password">Mot de passe</label>
+          <input
+            class="inputlogin"
+            type="password"
+            name="password"
+            id="password"
+            required
+          />
         </div>
         <div class="form-login">
           <input type="submit" value="Se connecter" />
         </div>
+        <p id="errorMessage"></p>
         <p>Mot de passe oublié</p>
       </form>
     </main>
@@ -49,5 +62,6 @@
         </ul>
       </nav>
     </footer>
+    <script src="./assets/javascript/login.js"></script>
   </body>
 </html>

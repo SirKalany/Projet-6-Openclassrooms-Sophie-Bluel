@@ -1,4 +1,3 @@
-
 // Fonction pour récupérer les travaux depuis l'API
 
 async function getWorks() {
@@ -51,14 +50,13 @@ async function getCategories() {
 
 const filtersContainer = document.querySelector(".filtres");
 async function createCategoryButtons() {
-
   // Création du bouton "Tous"
 
   const defaultButton = document.createElement("button");
   defaultButton.textContent = "Tous";
   defaultButton.classList.add("category", "active");
   defaultButton.id = 0;
-  filtersContainer.appendChild(defaultButton)
+  filtersContainer.appendChild(defaultButton);
 
   // Création des boutons avec les données de l'API
 
@@ -107,3 +105,29 @@ createCategoryButtons().then(() => {
   setupFilters(); // Active les filtres une fois les boutons prêts
 });
 
+window.addEventListener("DOMContentLoaded", function () {
+  const token = localStorage.getItem("token");
+  const editBanner = document.getElementById("editBanner");
+  const loginLogoutLink = document.getElementById("loginLogoutLink");
+
+  if (token) {
+    if (editBanner) editBanner.classList.remove("hidden"); // Affiche le bandeau "Mode édition" si l'élément existe
+
+    // Remplace "login" par "logout"
+
+    if (loginLogoutLink) {
+      loginLogoutLink.textContent = "logout";
+      loginLogoutLink.href = "#";
+
+      // Déconnexion au clic de logout
+
+      loginLogoutLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        localStorage.removeItem("token");
+        window.location.href = "index.html";
+      });
+    }
+  } else {
+    console.warn("Aucun token trouvé. L'utilisateur n'est pas connecté."); // Message d'erreur
+  }
+});
