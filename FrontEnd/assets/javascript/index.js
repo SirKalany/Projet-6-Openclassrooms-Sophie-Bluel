@@ -102,16 +102,30 @@ function setupFilters() {
 }
 
 createCategoryButtons().then(() => {
-  setupFilters(); // Active les filtres une fois les boutons prêts
+  const token = localStorage.getItem("token");
+  const filtersContainer = document.querySelector(".filtres");
+
+  if (token) {
+    // L'utilisateur est connecté : on cache les filtres
+    if (filtersContainer) {
+      filtersContainer.classList.add("hidden");
+    }
+  } else {
+    // L'utilisateur n'est pas connecté : on active les filtres
+    setupFilters();
+  }
 });
 
 window.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
   const editBanner = document.getElementById("editBanner");
+  const adminModification = document.getElementById("adminModification")
   const loginLogoutLink = document.getElementById("loginLogoutLink");
 
   if (token) {
     if (editBanner) editBanner.classList.remove("hidden"); // Affiche le bandeau "Mode édition" si l'élément existe
+
+    if (adminModification) adminModification.classList.remove("hidden"); // Affiche l'élément admin si connecté
 
     // Remplace "login" par "logout"
 
@@ -128,6 +142,10 @@ window.addEventListener("DOMContentLoaded", function () {
       });
     }
   } else {
-    console.warn("Aucun token trouvé. L'utilisateur n'est pas connecté."); // Message d'erreur
+    console.warn("Aucun token trouvé. L'utilisateur n'est pas connecté.");
+    if (adminModification) {
+      adminModification.classList.add("hidden"); // Cache l'élément admin si déconnecté
+    }
+    // Message d'erreur
   }
 });
