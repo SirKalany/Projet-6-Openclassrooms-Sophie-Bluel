@@ -142,10 +142,6 @@ window.addEventListener("DOMContentLoaded", function () {
       });
     }
   } else {
-    console.warn("Aucun token trouvé. L'utilisateur n'est pas connecté.");
-    if (adminModification) {
-      adminModification.classList.add("hidden"); // Cache l'élément admin si déconnecté
-    }
-    // Message d'erreur
+    console.warn("Aucun token trouvé. L'utilisateur n'est pas connecté."); // Message d'erreur
   }
 });

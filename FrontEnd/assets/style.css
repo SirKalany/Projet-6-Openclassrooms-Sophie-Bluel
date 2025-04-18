@@ -339,12 +339,71 @@ input[type="submit"]{
 }
 
 .modal-wrapper {
+	position: relative;
 	overflow: auto;
-	width: 500px;
+	width: 600px;
 	height: 600px;
 	padding: 20px;
 	background-color: #FFFEF8;
 }
+
+.modal-wrapper h2 {
+	margin-top: 30px;
+}
+
+#closeModal {
+	position: absolute;
+
+	top: 15px;
+	right: 20px;
+
+	font-weight: bold;
+	font-size: 20px;
+	text-decoration: none;
+
+	color: black;
+	cursor: pointer;
+
+}
+
+#addButton {
+	margin: 50px;
+	
+	position: absolute;
+	left: 240px;
+
+	font-weight: bold;
+	font-size: 20px;
+	text-decoration: none;
+
+	color: black;
+	cursor: pointer;
+}
+
+.modalWorks {
+	margin: 0;
+	width: 100%;
+
+	display: grid;
+	grid-template-columns: repeat(5, 75px);
+	grid-column-gap: 10px;
+	grid-row-gap: 30px;
+
+	justify-content: center;
+}
+
+.modalWorks img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+  }
+
+.modalWorks figure {
+	margin: 0;
+	width: 75px;
+	height: 75px;
+	height: auto;
+  }
 
 footer nav ul {
 	display: flex;
