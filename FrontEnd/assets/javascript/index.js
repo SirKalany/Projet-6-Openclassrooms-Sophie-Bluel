@@ -1,8 +1,8 @@
 // Fonction pour récupérer les travaux depuis l'API
 
 async function getWorks() {
-  const answer = await fetch("http://localhost:5678/api/works");
-  return answer.json();
+  const response = await fetch("http://localhost:5678/api/works");
+  return response.json();
 }
 
 // Fonction pour créer les figures avec les données récupérées
@@ -32,9 +32,8 @@ async function createFigure(work) {
 
 async function displayWorks() {
   const works = await getWorks();
-  works.forEach((work) => {
-    const figure = createFigure(work);
-  });
+  workContainer.innerHTML = ""; // On vide la galerie
+  works.forEach((work) => createFigure(work)); // On remplie la galerie avec nos travaux
 }
 
 displayWorks(); // Afficher les travaux
@@ -42,8 +41,8 @@ displayWorks(); // Afficher les travaux
 // Function pour récuperer les catégories depuis l'API
 
 async function getCategories() {
-  const answer = await fetch("http://localhost:5678/api/categories");
-  return answer.json();
+  const response = await fetch("http://localhost:5678/api/categories");
+  return response.json();
 }
 
 // Fonction pour créer dynamiquement les boutons de filtre
@@ -120,7 +119,7 @@ window.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
   const editBanner = document.getElementById("editBanner");
   const adminModification = document.getElementById("adminModification")
-  const loginLogoutLink = document.getElementById("loginLogoutLink");
+  const logoutLink = document.getElementById("logoutLink");
 
   if (token) {
     if (editBanner) editBanner.classList.remove("hidden"); // Affiche le bandeau "Mode édition" si l'élément existe
@@ -129,13 +128,13 @@ window.addEventListener("DOMContentLoaded", function () {
 
     // Remplace "login" par "logout"
 
-    if (loginLogoutLink) {
-      loginLogoutLink.textContent = "logout";
-      loginLogoutLink.href = "#";
+    if (logoutLink) {
+      logoutLink.textContent = "logout";
+      logoutLink.href = "#";
 
       // Déconnexion au clic de logout
 
-      loginLogoutLink.addEventListener("click", function (event) {
+      logoutLink.addEventListener("click", function (event) {
         event.preventDefault();
         localStorage.removeItem("token");
         window.location.href = "index.html";
