@@ -8,7 +8,7 @@ async function getWorks() {
 // Fonction pour créer les figures avec les données récupérées
 
 const workContainer = document.querySelector(".gallery");
-async function createFigure(work) {
+function createFigure(work) {
   const figure = document.createElement("figure");
   const figureCaption = document.createElement("figurecaption");
   const figureImage = document.createElement("img");
@@ -49,6 +49,7 @@ async function getCategories() {
 
 const filtersContainer = document.querySelector(".filtres");
 async function createCategoryButtons() {
+  
   // Création du bouton "Tous"
 
   const defaultButton = document.createElement("button");
@@ -137,7 +138,7 @@ window.addEventListener("DOMContentLoaded", function () {
       logoutLink.addEventListener("click", function (event) {
         event.preventDefault();
         localStorage.removeItem("token");
-        window.location.href = "index.html";
+        window.location.reload();
       });
     }
   } else {

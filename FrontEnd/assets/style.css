@@ -412,7 +412,7 @@ input[type="submit"] {
   background: rgba(0, 0, 0, 0.8);
 }
 
-.modal-wrapper {
+.modalWrapper {
   position: relative;
   overflow: auto;
   width: 600px;
@@ -421,7 +421,7 @@ input[type="submit"] {
   background-color: #fffef8;
 }
 
-.modal-wrapper h2 {
+.modalWrapper h2 {
   margin-top: 30px;
 }
 
@@ -478,7 +478,7 @@ input[type="submit"] {
   height: auto;
 }
 
-.figure-wrapper {
+.figureWrapper {
   position: relative;
 }
 
@@ -498,8 +498,41 @@ input[type="submit"] {
   cursor: pointer;
 }
 
+.uploadForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.uploadPreview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e8f1f6;
+  border-radius: 5px;
+  padding: 25px;
+}
+
+.uploadButton {
+  margin-top: 15px;
+  padding: 10px 15px;
+  background-color: #cbdcf4;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.submitButton {
+  background-color: #1d6154;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 footer nav ul {
   display: flex;
   justify-content: flex-end;
-  margin: 2em;
+  margin: 30px;
 }

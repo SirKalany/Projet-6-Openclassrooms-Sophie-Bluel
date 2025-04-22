@@ -28,23 +28,16 @@ modal.addEventListener("click", function (event) {
   }
 });
 
-// Récupération des travaux via l'API
-
-async function getWorks() {
-  const answer = await fetch("http://localhost:5678/api/works");
-  return answer.json();
-}
-
 // Création dynamique des éléments dans la modal
 
 async function createModalFigure(work) {
   const figure = document.createElement("figure");
 
   const wrapper = document.createElement("div");
-  wrapper.classList.add("figure-wrapper");
+  wrapper.classList.add("figureWrapper");
 
   const img = document.createElement("img");
-  img.src = work.imageUrl;
+  img.src = work.imageUrl;  // Nous avons déjà les éléments "work" car déclaré dans index.js
   img.alt = work.title;
 
   const trashIcon = document.createElement("i");
@@ -88,4 +81,40 @@ async function deleteWork(workId, figure) {
     figure.remove();
     displayWorks();
   }
+}
+
+// Changement de display de la Gallerie au Formulaire d'envoi
+
+const addButton = document.getElementById("addButton");
+const modalGallery = document.querySelector(".modalGallery");
+const modalForm = document.querySelector(".modalForm");
+
+addButton.addEventListener("click", function () {
+  modalGallery.classList.add("hidden");
+  modalForm.classList.remove("hidden");
+  categorySelect();
+});
+
+// Retour vers la modal gallery
+
+const backToGallery = document.getElementById("backToGallery");
+
+backToGallery.addEventListener("click", function () {
+  modalForm.classList.add("hidden");
+  modalGallery.classList.remove("hidden");
+});
+
+// Création des catégories dans le select de form
+
+async function categorySelect() {
+  const select = document.getElementById("photoCategory");
+
+  select.innerHTML = '<option value="">Choisir une catégorie</option>';
+    const categories = await getCategories();
+    categories.forEach(function (category) {
+      const option = document.createElement("option");
+      option.value = category.id;
+      option.textContent = category.name;
+      select.appendChild(option);
+    });
 }
