@@ -85,9 +85,9 @@
               <form class="uploadForm">
                 <div class="uploadPreview">
                   <i class="fa-regular fa-image fa-5x"></i>
-                  <button type="button" class="uploadButton">
-                    + Ajouter photo
-                  </button>
+                  <div id="previewZone"></div>
+                  <input type="file" id="imageInput" accept="image/png, image/jpeg" hidden />
+                  <button type="button" class="uploadButton" id="uploadTrigger">+ Ajouter photo</button>
                   <p>jpg, png : 4mo max</p>
                 </div>
                 <label for="photoTitle">Titre</label>
@@ -99,7 +99,7 @@
                 />
                 <label for="photoCategory">Catégorie</label>
                 <select id="photoCategory" name="photoCategory"></select>
-                <input type="submit" value="Valider" class="submit-button" />
+                <input type="submit" value="Valider" class="submitButton submitButtonInvalid" />
               </form>
             </div>
           </div>

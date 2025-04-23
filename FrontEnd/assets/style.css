@@ -531,6 +531,15 @@ input[type="submit"] {
   cursor: pointer;
 }
 
+input[type="submit"].submitButtonInvalid {
+  background-color: grey;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 15px;
+}
+
 footer nav ul {
   display: flex;
   justify-content: flex-end;
