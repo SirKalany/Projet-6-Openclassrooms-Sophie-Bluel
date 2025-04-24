@@ -1,13 +1,13 @@
 // Initialisation des éléments du DOM pour la modale gallerie
 
 const adminLink = document.querySelector("#adminModification a");
-const modal = document.getElementById("modal1");
+const modal = document.getElementById("modal");
 const closeModal = document.getElementById("closeModal");
 
 // Ouverture de la modal
 
 adminLink.addEventListener("click", function (event) {
-  event.preventDefault(); // Empêche le scroll vers #modal1
+  event.preventDefault(); // Empêche le scroll vers #modal
   modal.classList.remove("hidden");
   modal.setAttribute("aria-hidden", "false");
   displayModalWorks(); // Affiche les travaux dans la modale à chaque ouverture
@@ -88,7 +88,7 @@ async function deleteWork(workId, figure) {
   }
 
   figure.remove();
-  displayWorks();
+  displayWorks(); // On utilise la fonction d'affichage pour mettre à jour automatiquement les travaux
 }
 
 // Changement de display de la Gallerie au Formulaire d'upload
@@ -140,7 +140,7 @@ let selectedFile = null;
 
 submitButton.classList.add("submitButtonInvalid"); // Bouton désactivé au départ
 
-// Clic sur le bouton "Ajouter photo" pour ouvrir le sélecteur de fichiers
+// Clic sur le bouton "Ajouter photo" pour ouvrir le formulaire d'envoi
 
 uploadButton.addEventListener("click", function () {
   imageInput.click();
@@ -248,7 +248,7 @@ form.addEventListener("submit", async function (event) {
     // Envoie la requête avec les données du formulaire
 
     workUpload.send(formData);
-    
+
   } catch (error) {
     console.error(
       "Une erreur est survenue lors de l'envoi du formulaire : ",

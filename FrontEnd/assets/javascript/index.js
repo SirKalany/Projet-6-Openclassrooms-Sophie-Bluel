@@ -87,7 +87,7 @@ function setupFilters() {
 
       // Filtrage avec "Tous", on affiche tout
 
-      let filteredWorks = [];
+      let filteredWorks = []; // On assigne un tableau vide à la variable
 
       if (categoryId === 0) {
         filteredWorks = works; // On assigne tous les travaux
@@ -97,7 +97,6 @@ function setupFilters() {
         });
       }
 
-      // Affichage
       workContainer.innerHTML = ""; // On vide la galerie
       filteredWorks.forEach(function (work) {
         createFigure(work); // On remplit la galerie avec nos éléments filtrés
