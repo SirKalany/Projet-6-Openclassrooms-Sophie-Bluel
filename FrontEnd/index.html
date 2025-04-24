@@ -72,16 +72,15 @@
           role="dialog"
           aria-labelledby="titleModal">
           <div class="modalWrapper">
-            <a id="closeModal">x</a>
+            <a id="closeModal"><i class="fa-solid fa-x"></i></a>
             <div class="modalGallery">
-              <h2 id="titleModal">Galerie photo</h2>
+              <p id="titleModal">Galerie photo</p>
               <div class="modalWorks"></div>
-              <a id="addButton">Ajouter</a>
+              <a id="addButton">Ajouter une photo</a>
             </div>
-
             <div class="modalForm hidden">
-              <h2 id="titleModal">Ajout photo</h2>
-              <a id="backToGallery" class="backButton">← Retour</a>
+              <p id="titleModal">Ajout photo</p>
+              <a id="backToGallery" class="backButton"><i class="fa-solid fa-arrow-left"></i></a>
               <form class="uploadForm">
                 <div class="uploadPreview">
                   <i class="fa-regular fa-image fa-5x"></i>
@@ -92,13 +91,13 @@
                 </div>
                 <label for="photoTitle">Titre</label>
                 <input
+                  class="inputForm"
                   type="text"
                   id="photoTitle"
                   name="photoTitle"
-                  placeholder="Titre"
                 />
                 <label for="photoCategory">Catégorie</label>
-                <select id="photoCategory" name="photoCategory"></select>
+                <select class="inputForm" id="photoCategory" name="photoCategory"></select>
                 <input type="submit" value="Valider" class="submitButton submitButtonInvalid" />
               </form>
             </div>

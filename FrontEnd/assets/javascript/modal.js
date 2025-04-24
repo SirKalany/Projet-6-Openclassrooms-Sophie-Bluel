@@ -115,7 +115,8 @@ backToGallery.addEventListener("click", function () {
 async function categorySelect() {
   const select = document.getElementById("photoCategory");
 
-  select.innerHTML = '<option value="">Choisir une catégorie</option>';
+  select.innerHTML = ""; // On vide les catégories avant de les charger
+
   const categories = await getCategories();
   categories.forEach(function (category) {
     const option = document.createElement("option");
@@ -151,8 +152,8 @@ imageInput.addEventListener("change", function () {
 
   if (selectedFile) {
     var reader = new FileReader();
-    reader.onload = function (e) {
-      uploadPreview.innerHTML = `<img src="${e.target.result}" style="max-height: 200px" />`;
+    reader.onload = function (event) {
+      uploadPreview.innerHTML = `<img src="${event.target.result}"/>`;
     };
     reader.readAsDataURL(selectedFile);
   }
@@ -163,7 +164,7 @@ imageInput.addEventListener("change", function () {
 function validateFormFields() {
   var title = document.getElementById("photoTitle").value.trim();
   var category = document.getElementById("photoCategory").value;
-  var isValid = selectedFile && title && category;
+  var isValid = selectedFile && title && category; // Vérification si les éléments sont corrects
 
   submitButton.disabled = !isValid; // Désactive le bouton si invalide
   submitButton.classList.toggle("submitButtonInvalid", !isValid); // Applique la classe d'invalidité

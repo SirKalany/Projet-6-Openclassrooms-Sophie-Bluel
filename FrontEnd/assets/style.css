@@ -187,6 +187,7 @@ nav li a {
 #introduction {
   display: flex;
   align-items: center;
+  margin-bottom: 150px;
 }
 #introduction figure {
   flex: 1;
@@ -209,7 +210,7 @@ nav li a {
 }
 #portfolio h2 {
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 50px;
 }
 .gallery {
   width: 100%;
@@ -296,13 +297,15 @@ input[type="submit"] {
 }
 
 .loginMain {
-  justify-self: center;
-  height: 724px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
 }
 
 .loginMain h2 {
   justify-self: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .form-login {
@@ -335,6 +338,7 @@ input[type="submit"] {
   background-color: #1d6154;
 
   margin-bottom: 0;
+  margin-top: 10px;
   width: 180px;
 
   text-align: center;
@@ -351,6 +355,7 @@ input[type="submit"] {
 #errorMessage {
   text-decoration: none;
   color: red;
+  margin-bottom: 20px;
 }
 
 #currentPage {
@@ -386,7 +391,7 @@ input[type="submit"] {
 
   position: relative;
   justify-content: center;
-  bottom: 50px;
+  bottom: 70px;
   left: 175px;
 
   gap: 10px;
@@ -413,23 +418,32 @@ input[type="submit"] {
 }
 
 .modalWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pour pousser les éléments en haut et en bas */
   position: relative;
   overflow: auto;
   width: 600px;
-  height: 600px;
+  height: 670px;
   padding: 20px;
+  border-radius: 15px;
   background-color: #fffef8;
 }
 
-.modalWrapper h2 {
-  margin-top: 30px;
+#titleModal {
+  justify-self: center;
+
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+  font-size: 26px;
 }
 
 #closeModal {
   position: absolute;
 
-  top: 15px;
-  right: 20px;
+  top: 25px;
+  right: 30px;
 
   font-weight: bold;
   font-size: 20px;
@@ -437,24 +451,45 @@ input[type="submit"] {
 
   color: black;
   cursor: pointer;
+}
+
+#backToGallery {
+  position: absolute;
+
+  top: 25px;
+  left: 30px;
+
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+
+  color: black;
+  cursor: pointer;
+}
+
+.modalForm {
+  margin-left: 75px;
+  margin-right: 75px;
 }
 
 #addButton {
-  margin: 50px;
+  display: flex;
+  justify-content: center;
 
-  position: absolute;
-  left: 240px;
-
-  font-weight: bold;
-  font-size: 20px;
-  text-decoration: none;
-
-  color: black;
+  background-color: #1d6154;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  width: 218px;
   cursor: pointer;
+
+  margin: auto;
+  margin-top: 100px;
 }
 
 .modalWorks {
-  margin: 0;
+  margin-bottom: 50px;
   width: 100%;
 
   display: grid;
@@ -486,7 +521,7 @@ input[type="submit"] {
   position: absolute;
   top: 5px;
   right: 5px;
-  
+
   font-size: 12px;
 
   background-color: black;
@@ -508,40 +543,71 @@ input[type="submit"] {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   background-color: #e8f1f6;
   border-radius: 5px;
   padding: 25px;
+
+  margin-bottom: 20px;
+}
+
+.uploadPreview i {
+  color: #b9c5cc;
+}
+
+.uploadPreview p {
+  font-size: 10px;
+  margin-top: 10px;
+  color: #444444;
 }
 
 .uploadButton {
   margin-top: 15px;
-  padding: 10px 15px;
-  background-color: #cbdcf4;
+  padding: 10px 50px;
+  font-size: 14px;
+
+  background-color: #b9c5cc;
+  color: #306685;
+
   border: none;
   border-radius: 20px;
+
   cursor: pointer;
 }
 
-.submitButton {
+.inputForm {
+  height: 50px;
+  border-style: none;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+input[type="submit"].submitButton {
   background-color: #1d6154;
   color: white;
   border: none;
+  margin: auto;
+
   padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
   border-radius: 20px;
+
+  width: 238px;
+  margin-top: 50px;
   cursor: pointer;
 }
 
 input[type="submit"].submitButtonInvalid {
-  background-color: grey;
-}
-
-.errorMessage {
-  color: red;
-  font-size: 15px;
+  background-color: #a7a7a7;
 }
 
 footer nav ul {
   display: flex;
   justify-content: flex-end;
   margin: 30px;
+}
+
+.footerLogin {
+  position: relative;
+  top: 340px;
 }
