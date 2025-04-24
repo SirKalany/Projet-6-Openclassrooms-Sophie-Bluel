@@ -83,10 +83,12 @@ async function deleteWork(workId, figure) {
     },
   });
 
-  if (response.ok) {
-    figure.remove();
-    displayWorks();
+  if (!response.ok) {
+    throw new Error("Une erreur est survenue");
   }
+
+  figure.remove();
+  displayWorks();
 }
 
 // Changement de display de la Gallerie au Formulaire d'upload
@@ -180,7 +182,7 @@ photoCategory.addEventListener("input", validateFormFields);
 
 // Soumission du formulaire
 
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", async function (event) {
   event.preventDefault();
 
   var title = document.getElementById("photoTitle").value.trim();
@@ -189,7 +191,7 @@ form.addEventListener("submit", function (event) {
   // Vérification si les champs sont remplis
 
   if (!selectedFile || !title || !category) {
-    return; // Ne rien faire si le formulaire est incomplet
+    return;
   }
 
   var formData = new FormData();
@@ -205,42 +207,53 @@ form.addEventListener("submit", function (event) {
   workUpload.open("POST", "http://localhost:5678/api/works", true);
   workUpload.setRequestHeader("Authorization", `Bearer ${token}`);
 
-  // Lors de la réussite de l'envoi
+  try {
 
-  workUpload.onload = function () {
-    if (workUpload.status === 201) {
+    // Lors de la réussite de l'envoi
 
-      // Réinitialise le formulaire après succès
+    workUpload.onload = function () {
+      if (workUpload.status === 201) {  // status === 201 veut dire "Elément crée"
 
-      console.log("Image ajoutée!");
+        // Réinitialise le formulaire après succès
 
-      form.reset();
-      selectedFile = null;
-      uploadPreview.innerHTML = `
-        <i class="fa-regular fa-image fa-5x"></i>
-        <div id="previewZone"></div>
-        <button type="button" class="uploadButton" id="uploadTrigger">+ Ajouter photo</button>
-        <p>jpg, png : 4mo max</p>
-      `;
-      validateFormFields(); // Revalide après l'ajout d'image
+        console.log("Image ajoutée!"); // Réinitialise le formulaire après succès
 
-      // Réattache le listener au nouveau bouton
+        form.reset();
+        selectedFile = null;
+        uploadPreview.innerHTML = `
+          <i class="fa-regular fa-image fa-5x"></i>
+          <div id="previewZone"></div>
+          <button type="button" class="uploadButton" id="uploadTrigger">+ Ajouter photo</button>
+          <p>jpg, png : 4mo max</p>
+        `;
+        validateFormFields(); // Revalide après l'ajout d'image
 
-      const uploadButton = document.getElementById("uploadTrigger");
-      uploadButton.addEventListener("click", function () {
-        imageInput.click();
-      });
+        // Réattache le listener au nouveau bouton
 
-      categorySelect(); // Recharger les catégories
-      displayWorks(); // Recharger la galerie principale
-      displayModalWorks(); // Recharger la modale
-      document.querySelector(".modalForm").classList.add("hidden"); // Cache la modale d'upload
-      document.querySelector(".modalGallery").classList.remove("hidden"); // Charge la modale gallerie
-    } else {
-      console.log("Erreur lors de l'envoi. Veuillez réessayer.");
-    }
-  };
+        const uploadButton = document.getElementById("uploadTrigger");
+        uploadButton.addEventListener("click", function () {
+          imageInput.click();
+        });
 
-  // Envoie la requête avec les données du formulaire
-  workUpload.send(formData);
+        categorySelect(); // Recharger les catégories
+        displayWorks(); // Recharger la galerie principale
+        displayModalWorks(); // Recharger la modale
+        document.querySelector(".modalForm").classList.add("hidden"); // Cache la modale d'upload
+        document.querySelector(".modalGallery").classList.remove("hidden"); // Charge la modale galerie
+      } else {
+        console.log("Erreur lors de l'envoi. Veuillez réessayer.");
+      }
+    };
+
+    // Envoie la requête avec les données du formulaire
+
+    workUpload.send(formData);
+    
+  } catch (error) {
+    console.error(
+      "Une erreur est survenue lors de l'envoi du formulaire : ",
+      error
+    );
+    alert("Une erreur est survenue. Veuillez réessayer.");
+  }
 });

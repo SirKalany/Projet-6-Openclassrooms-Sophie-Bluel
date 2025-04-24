@@ -73,14 +73,16 @@ async function createCategoryButtons() {
 function setupFilters() {
   const buttons = document.querySelectorAll(".category");
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", async () => {
+  buttons.forEach(function (button) {
+    button.addEventListener("click", async function () {
       const categoryId = parseInt(button.id); // Récupère l'ID du bouton cliqué
       const works = await getWorks();
 
-      // Met à jour le boutton actif
+      // Met à jour le bouton actif
 
-      buttons.forEach((btn) => btn.classList.remove("active"));
+      buttons.forEach(function (btn) {
+        btn.classList.remove("active");
+      });
       button.classList.add("active");
 
       // Filtrage avec "Tous", on affiche tout
@@ -88,15 +90,18 @@ function setupFilters() {
       let filteredWorks = [];
 
       if (categoryId === 0) {
-        filteredWorks = works; // Afficher tous les travaux
+        filteredWorks = works; // On assigne tous les travaux
       } else {
-        filteredWorks = works.filter((work) => work.categoryId === categoryId);
+        filteredWorks = works.filter(function (work) { // On assigne les travaux selon leur categorie
+          return work.categoryId === categoryId;
+        });
       }
 
       // Affichage
-
-      workContainer.innerHTML = ""; // On vide la gallerie
-      filteredWorks.forEach((work) => createFigure(work)); // On remplie la gallerie avec nos éléments filtrés
+      workContainer.innerHTML = ""; // On vide la galerie
+      filteredWorks.forEach(function (work) {
+        createFigure(work); // On remplit la galerie avec nos éléments filtrés
+      });
     });
   });
 }
@@ -111,7 +116,7 @@ createCategoryButtons().then(() => {
       filtersContainer.classList.add("hidden");
     }
   } else {
-    // L'utilisateur n'est pas connecté : on active les filtres
+    // L'utilisateur n'est pas connecté : on ne cache pas les filtres
     setupFilters();
   }
 });
@@ -119,7 +124,7 @@ createCategoryButtons().then(() => {
 window.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
   const editBanner = document.getElementById("editBanner");
-  const adminModification = document.getElementById("adminModification")
+  const adminModification = document.getElementById("adminModification");
   const logoutLink = document.getElementById("logoutLink");
 
   if (token) {
