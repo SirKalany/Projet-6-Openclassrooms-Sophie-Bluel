@@ -21,7 +21,7 @@ closeModal.addEventListener("click", function (event) {
   modal.setAttribute("aria-hidden", "true");
 });
 
-// Fermer en cliquant à l'extérieur de la modal-wrapper
+// Fermer en cliquant à l'extérieur de la modalWrapper
 
 modal.addEventListener("click", function (event) {
   if (event.target === modal) {

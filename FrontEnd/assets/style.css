@@ -549,10 +549,17 @@ input[type="submit"] {
   padding: 25px;
 
   margin-bottom: 20px;
+
 }
 
 .uploadPreview i {
   color: #b9c5cc;
+}
+
+.uploadPreview img {
+  max-width: 100%;
+  max-height: auto;
+  object-fit: contain;
 }
 
 .uploadPreview p {
